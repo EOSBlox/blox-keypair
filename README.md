@@ -37,7 +37,7 @@ $ import 'blox-keypair';
 <blox-keypair
     id="keypair"
     generate="0"
-    pairs="{{keyPairs}}">
+    keypairs="{{keyPairs}}">
 </blox-keypair>
 ```
 
