@@ -16,12 +16,21 @@ class BloxKeypair extends PolymerElement {
           display: block;
         }
       </style>
+      <template is="dom-if" if="{{debug}}">
+      {{keypairOne}}  </br></br>
+      {{keypairTwo}}  
+      </template>
     `;
   }
   static get properties() {
     return {
       generate: {
         type: Number,
+        observer: 'generate',
+      },
+      debug: {
+        type: Boolean,
+        value: false,
         observer: 'generate',
       },
       keypairs: {
@@ -31,6 +40,7 @@ class BloxKeypair extends PolymerElement {
       },
     };
   }
+
 
   generate(){
     return new Promise((resolve, reject) => {
@@ -43,6 +53,8 @@ class BloxKeypair extends PolymerElement {
       .then((keypair2) => {
         keypair.push(keypair2)
         this.keypairs = JSON.stringify(keypair);
+        this.keypairOne = JSON.stringify(keypair[0]);
+        this.keypairTwo = JSON.stringify(keypair[1]);
         resolve(keypair)
       })
       .catch((err) => {
